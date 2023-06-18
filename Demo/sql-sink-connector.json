@@ -1,0 +1,22 @@
+{
+    "name": "sink-connector-article",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "connection.url": "jdbc:sqlserver://host.docker.internal;databaseName=KafkaSink_Db",
+    "connection.user": "sa",
+    "connection.password": "Mypassword123!",
+    "insert.mode": "upsert",
+    "pk.fields": "id",
+    "pk.mode": "record_key",
+    "topics": "etl.KafkaTraning_Db.dbo.Article",
+    "table.name.format": "Article",
+    "auto.create": "true",
+    "value.converter": "io.confluent.connect.avro.AvroConverter",
+    "value.converter.schema.registry.url": "http://redpanda:8081",
+    "key.converter": "io.confluent.connect.avro.AvroConverter",
+    "key.converter.schema.registry.url": "http://redpanda:8081",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+    "transforms.unwrap.delete.handling.mode": "none",
+    "delete.enabled": "true"
+}
